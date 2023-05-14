@@ -11,9 +11,20 @@
         <Label col="2" :text="StrMonthN" textWrap="true" class="button"/>
       </GridLayout>
 
-      <GridLayout rows="auto, auto, auto, auto, auto, auto" columns="*" v-for="(week, index) in show" :key="index">
-        <GridLayout :row="index" rows="auto" columns="*, *, *, *, *, *, *" v-for="(day, idx) in week" :key="idx">
-              <Label :col="idx" :text="day" textWrap="true" />
+      <GridLayout rows="auto" columns="*, *, *, *, *, *, *" class="name-day">
+          <Label col="0" text="Mo" textWrap="true" />
+          <Label col="1" text="Tu" textWrap="true" />
+          <Label col="2" text="We" textWrap="true" />
+          <Label col="3" text="Th" textWrap="true" />
+          <Label col="4" text="Fr" textWrap="true" />
+          <Label col="5" text="Sa" textWrap="true" />
+          <Label col="6" text="Su" textWrap="true" />
+      </GridLayout>
+      <GridLayout rows="auto, auto, auto, auto, auto, auto, auto" columns="*" v-for="(week, index) in show" :key="index">
+        <GridLayout :row="index + 1" rows="auto" columns="*, *, *, *, *, *, *" v-for="(day, idx) in week" :key="idx">
+              <Label :col="idx" :text="day.day" textWrap="true" class="month-day" v-if="day.state == 'thisMonth'"/>
+              <Label :col="idx" :text="day.day" textWrap="true" class="today" v-else-if="day.state == 'thisDay'"/>
+              <Label :col="idx" :text="day.day" textWrap="true" class="notMonth-day" v-else/>
           </GridLayout>
       </GridLayout>
 
@@ -31,8 +42,7 @@ export default {
   data () {
     return {
       selectedMonth: 0,
-      show: 0,
-      nowDay: this.getNowDay(),
+      show: [],
       StrMonthP: '',
       StrMonthD: '',
       StrMonthN: '',
@@ -49,6 +59,7 @@ export default {
   methods: {
     getShow() {
       var base = new Date();
+      const nowDay = new Date(base.getFullYear(), base.getMonth(), base.getDate());
 
       var p = new Date(base.getFullYear(), base.getMonth() + this.selectedMonth - 1, 1);
       var t = new Date(base.getFullYear(), base.getMonth() + this.selectedMonth, 1);
@@ -67,18 +78,22 @@ export default {
 
       var v = new Date(t.getFullYear(), t.getMonth(), t.getDate() - day);
       this.show = [];
+      var state = 'notThis';
       for (var i = 0; i < 6; i++)
       {
         this.show.push([]);
         for (var j = 0; j < 7; j++) {
-          this.show[i].push(v.getDate());
+          state = 'notThis';
+          if (v.getMonth() == t.getMonth()) {
+            state = 'thisMonth';
+          }
+          if (v.getMonth() == nowDay.getMonth() && v.getDate() == nowDay.getDate()) {
+            state = 'thisDay';
+          }
+          this.show[i].push({day: v.getDate(), state: state});
           v.setDate(v.getDate() + 1);
         }
       }
-    },
-    getNowDay() {
-      var a = new Date();
-      return new Date(a.getFullYear(), a.getMonth(), a.getDate());
     },
   }
 };

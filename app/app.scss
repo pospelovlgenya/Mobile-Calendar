@@ -2,13 +2,13 @@
 @import '@nativescript/theme/default';
 
 .page {
-    place-items: center;
-    place-content: center;
-    background-color: #000;
-    color: #FFF;
-    text-align: center;
-    font-size: 20pt;
-  }
+  place-items: center;
+  place-content: center;
+  background-color: #000;
+  color: #FFF;
+  text-align: center;
+  font-size: 20pt;
+}
 
 .ab {
   background-color: #FF0;
@@ -24,12 +24,48 @@
 }
 
 .button {
-    font-size: 20pt;
-    text-align: center;
-    margin: 10px, 10px, 10px, 10px;
-    background-color: #000;
-    color: #FF0;
-    border: #FFF;
-    border-radius: 25px;
-    box-shadow: 0 0 20px #FFF;
-  }
+  font-size: 20pt;
+  text-align: center;
+  margin: 10px, 10px, 10px, 10px;
+  background-color: #000;
+  color: #FF0;
+  border: #FFF;
+  border-radius: 25px;
+  box-shadow: 0 0 20px #FFF;
+}
+
+.name-day {
+  margin: 10px, 10px, 10px, 10px;
+  background-color: #000;
+  color: #FF0;
+  border: #FFF;
+  border-radius: 1000px;
+  box-shadow: 0 0 20px #FFF;
+}
+
+.today {
+  margin: 10px, 10px, 10px, 10px;
+  background-color: #FFF;
+  color: #F00;
+  border: #FFF;
+  border-radius: 1000px;
+  box-shadow: 0 0 20px #F00;
+}
+
+.month-day {
+  margin: 10px, 10px, 10px, 10px;
+  background-color: #000;
+  color: #0FF;
+  border: #FFF;
+  border-radius: 1000px;
+  box-shadow: 0 0 20px #FFF;
+}
+
+.notMonth-day {
+  margin: 10px, 10px, 10px, 10px;
+  background-color: #000;
+  color: #FDECA6;
+  border: #FFF;
+  border-radius: 1000px;
+  box-shadow: 0 0 20px #FFF;
+}
