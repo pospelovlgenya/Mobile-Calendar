@@ -10,7 +10,12 @@
         <Label col="1" :text="StrMonthD" textWrap="true" class="button"/>
         <Label col="2" :text="StrMonthN" textWrap="true" class="button"/>
       </GridLayout>
-      
+
+      <GridLayout rows="auto, auto, auto, auto, auto, auto" columns="*" v-for="(week, index) in show" :key="index">
+        <GridLayout :row="index" rows="auto" columns="*, *, *, *, *, *, *" v-for="(day, idx) in week" :key="idx">
+              <Label :col="idx" :text="day" textWrap="true" />
+          </GridLayout>
+      </GridLayout>
 
       <GridLayout rows="auto" columns="*, *, *">
         <Image col="0" src="~/assets/previous.png" width="35%" stretch="aspectFit" @tap="selectedMonth--" class="button"/>
@@ -60,8 +65,16 @@ export default {
         day--;
       }
 
-      // this.show
-
+      var v = new Date(t.getFullYear(), t.getMonth(), t.getDate() - day);
+      this.show = [];
+      for (var i = 0; i < 6; i++)
+      {
+        this.show.push([]);
+        for (var j = 0; j < 7; j++) {
+          this.show[i].push(v.getDate());
+          v.setDate(v.getDate() + 1);
+        }
+      }
     },
     getNowDay() {
       var a = new Date();
