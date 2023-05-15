@@ -12,13 +12,13 @@
       </GridLayout>
 
       <GridLayout rows="auto" columns="*, *, *, *, *, *, *" class="name-day">
-          <Label col="0" text="Mo" textWrap="true" />
-          <Label col="1" text="Tu" textWrap="true" />
-          <Label col="2" text="We" textWrap="true" />
-          <Label col="3" text="Th" textWrap="true" />
-          <Label col="4" text="Fr" textWrap="true" />
-          <Label col="5" text="Sa" textWrap="true" />
-          <Label col="6" text="Su" textWrap="true" />
+          <Label col="0" text="M" textWrap="true" />
+          <Label col="1" text="T" textWrap="true" />
+          <Label col="2" text="W" textWrap="true" />
+          <Label col="3" text="R" textWrap="true" />
+          <Label col="4" text="F" textWrap="true" />
+          <Label col="5" text="S" textWrap="true" />
+          <Label col="6" text="U" textWrap="true" />
       </GridLayout>
       <GridLayout rows="auto, auto, auto, auto, auto, auto, auto" columns="*" v-for="(week, index) in show" :key="index">
         <GridLayout :row="index + 1" rows="auto" columns="*, *, *, *, *, *, *" v-for="(day, idx) in week" :key="idx">
@@ -87,7 +87,7 @@ export default {
           if (v.getMonth() == t.getMonth()) {
             state = 'thisMonth';
           }
-          if (v.getMonth() == nowDay.getMonth() && v.getDate() == nowDay.getDate()) {
+          if (v.getFullYear() == nowDay.getFullYear() && v.getMonth() == nowDay.getMonth() && v.getDate() == nowDay.getDate()) {
             state = 'thisDay';
           }
           this.show[i].push({day: v.getDate(), state: state});
